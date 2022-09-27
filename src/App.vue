@@ -1,26 +1,42 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <HeaderTop />
+    <NavBar />
+    <TopCard />
+    <MultiChart />
+    <TableController />
+    <!-- <StockPopup
+      modalOn="{modalOn}"
+      setModalOn="{setModalOn}"
+      stockData="{stockData}"
+      setStockData="{setStockData}"
+      ref="{stockPopupEl}"
+    />
+    <DataTable /> -->
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HeaderTop from "./components/layout/Header.vue";
+import NavBar from "./components/layout/NavBar.vue";
+import TopCard from "./components/TopCard.vue";
+import MultiChart from "./components/MultiChart.vue";
+import TableController from "./components/TableController.vue";
+// import StockPopup from "./components/StockPopup.vue";
+// import DataTable from "./components/DataTable.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    HeaderTop,
+    NavBar,
+    TopCard,
+    MultiChart,
+    TableController,
+    // StockPopup,
+    // DataTable,
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
