@@ -118,6 +118,7 @@
 </template>
 
 <script>
+import { addStockData } from "config/crawler";
 export default {
   name: "DataTable",
   data() {
