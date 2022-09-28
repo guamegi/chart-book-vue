@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <!-- 총 매수  -->
-    <div class="col-6 col-sm-6 col-md-6 col-xl-3 mb-4">
+    <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
       <div class="card shadow border-left-primary py-2">
         <div class="card-body">
           <div class="row align-items-center no-gutters">
@@ -18,7 +18,7 @@
       </div>
     </div>
     <!-- 총 평가 -->
-    <div class="col-6 col-sm-6 col-md-6 col-xl-3 mb-4">
+    <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
       <div class="card shadow border-left-success py-2">
         <div class="card-body">
           <div class="row align-items-center no-gutters">
@@ -35,7 +35,7 @@
       </div>
     </div>
     <!-- 평가 손익 -->
-    <div class="col-6 col-sm-6 col-md-6 col-xl-3 mb-4">
+    <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
       <div class="card shadow border-left-info py-2">
         <div class="card-body">
           <div class="row align-items-center no-gutters">
@@ -52,7 +52,7 @@
       </div>
     </div>
     <!-- 수익률 -->
-    <div class="col-6 col-sm-6 col-md-6 col-xl-3 mb-4">
+    <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
       <div class="card shadow border-left-warning py-2">
         <div class="card-body">
           <div class="row align-items-center no-gutters">

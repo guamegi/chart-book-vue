@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <!-- Area Chart -->
-    <div class="col-xl-7 col-md-7">
+    <div class="col-md-7">
       <div class="card shadow mb-4">
         <div
           class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
@@ -17,7 +17,7 @@
     </div>
 
     <!-- Pie Chart -->
-    <div class="col-xl-5 col-md-5">
+    <div class="col-md-5">
       <div class="card shadow mb-4">
         <!-- Card Header - Dropdown -->
         <div

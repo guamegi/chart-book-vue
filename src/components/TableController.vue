@@ -4,7 +4,7 @@
     <!-- <div
           class={
             isMobile
-              ? "col-xl-3 col-md-5 col-sm-6 d-flex justify-content-center"
+              ? "col-md-5 col-sm-6 d-flex justify-content-center"
               : null
           }
         > -->
@@ -27,7 +27,7 @@
         <i class="fas fa-trash mr-2"></i>
         전체 삭제
       </div>
-      {modalOn ? (
+      <!-- {modalOn ? (
       <SearchStockPopup
         modalOn="{modalOn}"
         setModalOn="{setModalOn}"
@@ -35,12 +35,12 @@
         setStockData="{setStockData}"
         ref="{stockPopupEl}"
       />
-      ) : ( "" )}
+      ) : ( "" )} -->
     </div>
     <!-- <div
           class={
             isMobile
-              ? "col-xl-3 col-md-5 col-sm-6 d-flex justify-content-center"
+              ? "col-md-5 col-sm-6 d-flex justify-content-center"
               : null
           }
         > -->
@@ -56,25 +56,24 @@
 </template>
 
 <script>
-function checkMobile() {
-  const user = navigator.userAgent;
-  let isCheck = false;
-
-  if (user.indexOf("iPhone") > -1 || user.indexOf("Android") > -1) {
-    isCheck = true;
-  }
-
-  return isCheck;
-}
-
 export default {
   name: "TableController",
   data() {
     return {
-      isMobile: checkMobile()
-        ? "col-xl-3 col-md-5 col-sm-6 d-flex justify-content-center"
+      isMobile: this.checkMobile()
+        ? "col-md-5 col-sm-6 d-flex justify-content-center"
         : null,
     };
+  },
+  methods: {
+    checkMobile() {
+      const user = navigator.userAgent;
+      let isCheck = false;
+      if (user.indexOf("iPhone") > -1 || user.indexOf("Android") > -1) {
+        isCheck = true;
+      }
+      return isCheck;
+    },
   },
 };
 </script>

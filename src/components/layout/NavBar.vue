@@ -2,16 +2,12 @@
   <nav class="navbar navbar-dark navbar-expand bg-gradient-primary shadow mb-4">
     <div class="container d-flex flex-row">
       <ul class="nav navbar-nav text-light">
-        <li class="nav-item ml-3" role="presentation">
-          <a class="nav-link" activeclass="active" to="/portfolio">
-            <span>자산현황</span>
-          </a>
-        </li>
-        <li class="nav-item ml-3" role="presentation">
-          <a class="nav-link" activeclass="active" to="/market">
-            <span>증시현황</span>
-          </a>
-        </li>
+        <router-link to="/" class="nav-link" active-class="active"
+          >자산현황</router-link
+        >
+        <router-link to="/market" class="nav-link" active-class="active"
+          >증시현황</router-link
+        >
       </ul>
     </div>
   </nav>

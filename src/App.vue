@@ -2,39 +2,47 @@
   <div class="container">
     <HeaderTop />
     <NavBar />
-    <TopCard />
-    <MultiChart />
-    <TableController />
-    <!-- <StockPopup
-      modalOn="{modalOn}"
-      setModalOn="{setModalOn}"
-      stockData="{stockData}"
-      setStockData="{setStockData}"
-      ref="{stockPopupEl}"
-    />
-    <DataTable /> -->
+    <div id="content" class="content">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
 import HeaderTop from "./components/layout/Header.vue";
 import NavBar from "./components/layout/NavBar.vue";
-import TopCard from "./components/TopCard.vue";
-import MultiChart from "./components/MultiChart.vue";
-import TableController from "./components/TableController.vue";
-// import StockPopup from "./components/StockPopup.vue";
-// import DataTable from "./components/DataTable.vue";
 
 export default {
   name: "App",
   components: {
     HeaderTop,
     NavBar,
-    TopCard,
-    MultiChart,
-    TableController,
-    // StockPopup,
-    // DataTable,
+  },
+  data() {
+    return {
+      modalOn: false,
+      stockData: [],
+      defaultData: {
+        0: {
+          amount: "0.1",
+          avgPrice: "20,000,000",
+          category: "coin",
+          code: "BTC",
+          codes: "KRW-BTC",
+          en_name: "Bitcoin",
+          name: "비트코인",
+        },
+        1: {
+          amount: "10",
+          avgPrice: "50,000",
+          category: "stock",
+          code: "005930",
+          codes: null,
+          en_name: null,
+          name: "삼성전자",
+        },
+      },
+    };
   },
 };
 </script>
