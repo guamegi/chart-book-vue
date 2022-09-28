@@ -77,9 +77,10 @@ export default {
         alert("동일한 종목이 존재합니다. 다시 선택해주세요!");
         return;
       }
+      console.log(code, stock);
       // 해당 종목의 table 추가
       // setStockData((list) => [...list, stock]);
-      this.newStockData = [...stock];
+      this.newStockData = [...this.newStockData, stock];
 
       let avgPriceInput = null;
       if (stock.category === "stock") {

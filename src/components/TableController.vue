@@ -31,8 +31,8 @@
       ) : ( "" )} -->
       <StockPopup
         v-show="isModal == true"
-        isModal="isModal"
-        stockData="stockData"
+        :isModal="isModal"
+        :stockData="stockData"
       />
     </div>
     <div class="isMobile">
@@ -46,7 +46,7 @@
 
 <script>
 import StockPopup from "./StockPopup.vue";
-import { ws, removeAllWebSocket } from "@/websocket";
+import { ws, initWebSocket, removeAllWebSocket } from "@/websocket";
 
 export default {
   name: "TableController",
@@ -86,6 +86,49 @@ export default {
         // 웹소켓 전체 삭제
         removeAllWebSocket();
       }
+    },
+    saveData() {
+      // console.log(stockData);
+      // localstorage 저장. 종목 정보 + 평단/수량
+      const data = [...this.stockData];
+      for (let i in data) {
+        // console.log(data[i]);
+        let avgPriceInput = null;
+        let amountInput = null;
+        if (data[i].category === "stock") {
+          avgPriceInput = document.querySelector(`#A${data[i].code}-avgPrice`);
+          amountInput = document.querySelector(`#A${data[i].code}-amount`);
+        } else {
+          avgPriceInput = document.querySelector(`#${data[i].code}-avgPrice`);
+          amountInput = document.querySelector(`#${data[i].code}-amount`);
+        }
+        // data에 인덱스 기준으로 평단,수량 저장
+        data[i].avgPrice = avgPriceInput.value;
+        data[i].amount = amountInput.value;
+      }
+      console.log("data:", data);
+      localStorage.setItem("saveData", JSON.stringify(data));
+
+      // 저장 성공 팝업
+      alert("종목 저장 성공!");
+    },
+
+    getData() {
+      if (ws.length > 0) removeAllWebSocket();
+      console.log("get data");
+      this.stockData.forEach((stock) => {
+        // console.log(stockData);
+        if (stock.category === "coin") {
+          initWebSocket(stock.code, stock.codes);
+        }
+      });
+      // console.log("ws:", ws);
+    },
+
+    // 실시간 off
+    stopData() {
+      console.log("stop data");
+      if (ws.length > 0) removeAllWebSocket();
     },
   },
   components: {

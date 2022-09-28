@@ -16,7 +16,7 @@
           </tr>
         </thead>
         <tbody id="dataTable">
-          <div v-if="stockData.length > 0">
+          <template v-if="stockData.length > 0">
             <tr
               v-for="(stock, index) in stockData"
               :key="index"
@@ -103,18 +103,18 @@
               <td>
                 <button
                   class="btn btn-light text-danger"
-                  @click="removeStock(stock.code, index)"
+                  @click="() => removeStock(stock.code, index)"
                 >
                   <i class="fas fa-trash"></i>
                 </button>
               </td>
             </tr>
-          </div>
-          <div v-else>
+          </template>
+          <template v-else>
             <tr>
-              <td colSpan="9" class="text-center">No Data...</td>
+              <td colspan="9" class="text-center">No Data...</td>
             </tr>
-          </div>
+          </template>
         </tbody>
       </table>
     </div>
@@ -128,7 +128,26 @@ export default {
   name: "DataTable",
   data() {
     return {
-      stockData: [],
+      stockData: [
+        {
+          amount: "0.1",
+          avgPrice: "20,000,000",
+          category: "coin",
+          code: "BTC",
+          codes: "KRW-BTC",
+          en_name: "Bitcoin",
+          name: "비트코인",
+        },
+        {
+          amount: "10",
+          avgPrice: "50,000",
+          category: "stock",
+          code: "005930",
+          codes: null,
+          en_name: null,
+          name: "삼성전자",
+        },
+      ],
     };
   },
   methods: {

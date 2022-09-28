@@ -1,4 +1,3 @@
-// const [ws, removeWebSocket] = useState([]);
 import { setLineChart, initLineChart } from "./chart/area";
 import { setDoughnutChart, initDoughnutChart } from "./chart/doughnut";
 import { calcData } from "./chart/calcData";
@@ -8,7 +7,7 @@ let ws = [];
 const initWebSocket = (code = "BTC", codes = "KRW-BTC") => {
   // request data
   const json = [{ ticket: "ticket" }, { type: "ticker", codes: [codes] }];
-  // console.log("ws:", ws);
+  console.log("ws:", ws);
   // 웹소켓 생성
   const websocket = new WebSocket("wss://api.upbit.com/websocket/v1");
   websocket.binaryType = "blob";
