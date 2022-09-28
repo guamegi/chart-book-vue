@@ -1,5 +1,5 @@
 import * as axios from "axios";
-import { comma, uncomma, getToday } from "common";
+import { comma, uncomma, getToday } from "@/common";
 
 /**
  * 다우,나스닥,snp,영국,프랑스,독일 지수

@@ -16,95 +16,99 @@
           </tr>
         </thead>
         <tbody id="dataTable">
-          <div v-if="stockData">
-            <!-- <tr key={index} id={stock.code}>
-                    <td>{stock.name}</td>
-                    <td
-                      id={`${
-                        stock.category === "stock"
-                          ? "A" + stock.code
-                          : stock.code
-                      }-price`}
-                    ></td>
-                    <td>
-                      <div
-                        id={`${
-                          stock.category === "stock"
-                            ? "A" + stock.code
-                            : stock.code
-                        }-changeRate`}
-                      ></div>
-                      <div
-                        class="small"
-                        id={`${
-                          stock.category === "stock"
-                            ? "A" + stock.code
-                            : stock.code
-                        }-changePrice`}
-                      ></div>
-                    </td>
-                    <td>
-                      <NumberFormat
-                        class={`${styles.stockInput} avgPrice bg-light form-control small`}
-                        placeholder="평균단가 입력"
-                        name="avgPrice"
-                        type="tel"
-                        id={`${
-                          stock.category === "stock"
-                            ? "A" + stock.code
-                            : stock.code
-                        }-avgPrice`}
-                        thousandSeparator={true}
-                        value={stock.avgPrice ? stock.avgPrice : null}
-                      />
-                    </td>
-                    <td>
-                      <NumberFormat
-                        class={`${styles.stockInput} amount bg-light form-control small`}
-                        placeholder="수량 입력"
-                        name="amount"
-                        type="tel"
-                        id={`${
-                          stock.category === "stock"
-                            ? "A" + stock.code
-                            : stock.code
-                        }-amount`}
-                        thousandSeparator={true}
-                        value={stock.amount ? stock.amount : null}
-                      />
-                    </td>
-                    <td
-                      class="eval"
-                      id={`${
-                        stock.category === "stock"
-                          ? "A" + stock.code
-                          : stock.code
-                      }-eval`}
-                    ></td>
-                    <td
-                      class="profit"
-                      id={`${
-                        stock.category === "stock"
-                          ? "A" + stock.code
-                          : stock.code
-                      }-profit`}
-                    ></td>
-                    <td
-                      id={`${
-                        stock.category === "stock"
-                          ? "A" + stock.code
-                          : stock.code
-                      }-yield`}
-                    ></td>
-                    <td>
-                      <button
-                        class="btn btn-light text-danger"
-                        onClick={() => removeStock(stock.code, index)}
-                      >
-                        <i class="fas fa-trash "></i>
-                      </button>
-                    </td>
-                  </tr> -->
+          <div v-if="stockData.length > 0">
+            <tr
+              v-for="(stock, index) in stockData"
+              :key="index"
+              :id="stock.code"
+            >
+              <td>{{ stock.name }}</td>
+              <td
+                v-bind:id="[
+                  stock.category == 'stock'
+                    ? `A${stock.code}-price`
+                    : `${stock.code}-price`,
+                ]"
+              ></td>
+              <td>
+                <div
+                  v-bind:id="[
+                    stock.category == 'stock'
+                      ? `A${stock.code}-changeRate`
+                      : `${stock.code}-changeRate`,
+                  ]"
+                ></div>
+                <div
+                  class="small"
+                  v-bind:id="[
+                    stock.category == 'stock'
+                      ? `A${stock.code}-changePrice`
+                      : `${stock.code}-changePrice`,
+                  ]"
+                ></div>
+              </td>
+              <td>
+                <input
+                  class="stockInput avgPrice bg-light form-control small"
+                  placeholder="평균단가 입력"
+                  name="avgPrice"
+                  type="tel"
+                  v-bind:id="[
+                    stock.category == 'stock'
+                      ? `A${stock.code}-avgPrice`
+                      : `${stock.code}-avgPrice`,
+                  ]"
+                  thousandSeparator="{true}"
+                  v-bind:value="[stock.avgPrice ? stock.avgPrice : null]"
+                />
+              </td>
+              <td>
+                <input
+                  class="stockInput amount bg-light form-control small"
+                  placeholder="수량 입력"
+                  name="amount"
+                  type="tel"
+                  v-bind:id="[
+                    stock.category == 'stock'
+                      ? `A${stock.code}-amount`
+                      : `${stock.code}-amount`,
+                  ]"
+                  thousandSeparator="{true}"
+                  v-bind:value="[stock.amount ? stock.amount : null]"
+                />
+              </td>
+              <td
+                class="eval"
+                v-bind:id="[
+                  stock.category == 'stock'
+                    ? `A${stock.code}-eval`
+                    : `${stock.code}-eval`,
+                ]"
+              ></td>
+              <td
+                class="profit"
+                v-bind:id="[
+                  stock.category == 'stock'
+                    ? `A${stock.code}-profit`
+                    : `${stock.code}-profit`,
+                ]"
+              ></td>
+              <td
+                v-bind:id="[
+                  stock.category == 'stock'
+                    ? `A${stock.code}-yield`
+                    : `${stock.code}-yield`,
+                ]"
+              ></td>
+              <td>
+                <button
+                  class="btn btn-light text-danger"
+                  @click="removeStock(stock.code, index)"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
           </div>
           <div v-else>
             <tr>
@@ -118,13 +122,26 @@
 </template>
 
 <script>
-import { addStockData } from "config/crawler";
+import { ws, removeWebSocket } from "@/websocket";
+
 export default {
   name: "DataTable",
   data() {
     return {
       stockData: [],
     };
+  },
+  methods: {
+    removeStock(code, index) {
+      console.log("remove");
+      // console.log(code, index);
+      // setStockData(stockData.filter((stock) => stock.code !== code));
+      this.stockData = this.stockData.filter((stock) => stock.code !== code);
+      if (ws.length > 0) {
+        // 웹소켓 삭제
+        removeWebSocket(index);
+      }
+    },
   },
 };
 </script>

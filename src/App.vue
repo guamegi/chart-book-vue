@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <HeaderTop />
+    <Header />
     <NavBar />
     <div id="content" class="content">
       <router-view></router-view>
@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import HeaderTop from "./components/layout/Header.vue";
+import Header from "./components/layout/Header.vue";
 import NavBar from "./components/layout/NavBar.vue";
 
 export default {
   name: "App",
   components: {
-    HeaderTop,
+    Header,
     NavBar,
   },
   data() {
